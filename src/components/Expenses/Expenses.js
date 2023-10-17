@@ -1,5 +1,6 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
+import Card from "../UI/Card";
 
 export default function Expenses(props) {
   const propingData = props.expenses.map((expense) => {
@@ -20,12 +21,14 @@ export default function Expenses(props) {
     //date={`${month} ${expense.date.getDate()}, ${day} ${expense.date.getFullYear()}`}   //its actually prop
 
     return (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
+      <Card className="expenses">
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      </Card>
     );
   });
 
