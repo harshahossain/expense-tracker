@@ -103,6 +103,10 @@ export default function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        {/* setting the type to button so this doesnt submit the form */}
+        <button type="button" onClick={props.stopEditingHandler}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

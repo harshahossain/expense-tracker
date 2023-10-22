@@ -5,6 +5,9 @@ import ExpenseFormOneHandler from "./ExpenseFormOneHandler";
 import { v4 as uuidv4 } from "uuid";
 
 export default function NewExpense(props) {
+  //
+  const [isEditing, setIsEditing] = useState(false);
+
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
@@ -13,11 +16,22 @@ export default function NewExpense(props) {
     //console.log(expenseData);
 
     props.onAddExpense(expenseData);
+    setIsEditing(false);
   };
-
+  const editingHandler = () => {
+    setIsEditing(!isEditing);
+  };
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+      {!isEditing ? (
+        <button onClick={editingHandler}>Add New Expense</button>
+      ) : (
+        <ExpenseForm
+          onSaveExpenseData={saveExpenseDataHandler}
+          stopEditingHandler={editingHandler}
+        />
+      )}
+
       {/* <h2>One Handler Form</h2>
       <ExpenseFormOneHandler /> */}
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpenseFilter from "./ExpenseFilter";
+import ExpensesList from "./ExpensesList";
 
 export default function Expenses(props) {
   //
@@ -11,16 +11,6 @@ export default function Expenses(props) {
     return expense.date.getFullYear().toString() === filteredYear;
   });
   // const propingData = props.expenses.map((expense) => {
-  const propingData = filteredExpenses.map((expense) => {
-    return (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
-    );
-  });
 
   const filterChangleHandler = (selectedYear) => {
     //console.log(`from Expenses.js ${selectedYear}`);
@@ -34,8 +24,7 @@ export default function Expenses(props) {
           selected={filteredYear}
           onChangeFilter={filterChangleHandler}
         />
-        {propingData}
-        {/* {propingFilterYearData} */}
+        <ExpensesList expenses={filteredExpenses} />
       </Card>
     </div>
   );
