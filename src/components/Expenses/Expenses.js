@@ -7,7 +7,11 @@ export default function Expenses(props) {
   //
   const [filteredYear, setFilteredYear] = useState("2023");
 
-  const propingData = props.expenses.map((expense) => {
+  const filteredExpenses = props.expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+  // const propingData = props.expenses.map((expense) => {
+  const propingData = filteredExpenses.map((expense) => {
     return (
       <ExpenseItem
         key={expense.id}
@@ -31,6 +35,7 @@ export default function Expenses(props) {
           onChangeFilter={filterChangleHandler}
         />
         {propingData}
+        {/* {propingFilterYearData} */}
       </Card>
     </div>
   );
